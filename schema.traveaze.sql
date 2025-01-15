@@ -74,13 +74,16 @@ CREATE TABLE IF NOT EXISTS `hotels` (
 
 -- Dumping structure for table traveaze.tour_guides
 CREATE TABLE IF NOT EXISTS `tour_guides` (
-  `place_id` int unsigned NOT NULL,
+  `place_id` int NOT NULL AUTO_INCREMENT,
   `guide_id` int unsigned NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `experience` tinyint unsigned NOT NULL,
   `phone` bigint unsigned NOT NULL,
-  `charges` smallint unsigned NOT NULL DEFAULT '0'
+  `charges` smallint unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guide_id`),
+  KEY `FK_tour_guides_famous_places` (`place_id`),
+  CONSTRAINT `FK_tour_guides_famous_places` FOREIGN KEY (`place_id`) REFERENCES `famous_places` (`place_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table traveaze.tour_guides: ~0 rows (approximately)
