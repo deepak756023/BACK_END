@@ -22,8 +22,8 @@ USE `traveaze`;
 -- Dumping structure for table traveaze.cities
 CREATE TABLE IF NOT EXISTS `cities` (
   `city_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `state` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `state` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`city_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -46,10 +46,10 @@ CREATE TABLE IF NOT EXISTS `city_communications` (
 CREATE TABLE IF NOT EXISTS `famous_places` (
   `city_id` int NOT NULL,
   `place_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `location` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `history` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `location` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `history` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`place_id`),
   KEY `FK__cities` (`city_id`),
   CONSTRAINT `FK__cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`) ON UPDATE CASCADE
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `famous_places` (
 CREATE TABLE IF NOT EXISTS `hotels` (
   `city_id` int NOT NULL,
   `hotel_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `location` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `is_available` varchar(3) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `location` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `is_available` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`hotel_id`),
   KEY `FK__cities1` (`city_id`),
   CONSTRAINT `FK__cities1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`) ON UPDATE CASCADE
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `hotels` (
 CREATE TABLE IF NOT EXISTS `tour_guides` (
   `place_id` int NOT NULL AUTO_INCREMENT,
   `guide_id` int unsigned NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `experience` tinyint unsigned NOT NULL,
   `phone` bigint unsigned NOT NULL,
   `charges` smallint unsigned NOT NULL DEFAULT '0',
@@ -90,12 +90,25 @@ CREATE TABLE IF NOT EXISTS `tour_guides` (
 
 -- Dumping structure for table traveaze.transportation
 CREATE TABLE IF NOT EXISTS `transportation` (
-  `transportation_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `id` tinyint NOT NULL,
+  `transportation_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table traveaze.transportation: ~0 rows (approximately)
+
+-- Dumping structure for table traveaze.weather
+CREATE TABLE IF NOT EXISTS `weather` (
+  `city_id` int NOT NULL,
+  `humidity` tinyint NOT NULL DEFAULT (0),
+  `wind` smallint NOT NULL DEFAULT (0),
+  `rain_probability` tinyint NOT NULL DEFAULT (0),
+  `temp` tinyint NOT NULL DEFAULT (0),
+  PRIMARY KEY (`city_id`),
+  CONSTRAINT `FK_weather_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table traveaze.weather: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
