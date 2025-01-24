@@ -24,6 +24,12 @@ public class FamousPlaceController {
 	}
 	
 	@GetMapping("/place")
+	public FamousPlace getFamousPlaceById(@RequestParam String name) {
+			FamousPlace place = placeService.findPlaceByName(name);
+			return place;
+		}
+	
+	@GetMapping("/place_id")
 	public FamousPlace getFamousPlaceById(@RequestParam Integer id) {
 			FamousPlace place = placeService.findPlaceById(id);
 			return place;

@@ -36,6 +36,9 @@ public class City {
 	
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<FamousPlace> places = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Hotel> hotels = new ArrayList<>();
 
 
 	public int getCityId() {

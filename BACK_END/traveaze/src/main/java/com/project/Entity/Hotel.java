@@ -1,28 +1,21 @@
 package com.project.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "famous_places")
-public class FamousPlace {
+@Table(name = "hotels")
+public class Hotel {
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "place_id")
-	private int placeId;
+	@Column(name = "hotel_id")
+	private int hotelId;
 	
 	@Column(name = "name")
 	private String name;
@@ -33,22 +26,19 @@ public class FamousPlace {
 	@Column(name = "location")
 	private String location;
 	
-	@Column(name = "history")
-	private String history;
+	@Column(name = "is_available")
+	private String isAvailable;
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
-	
-	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Guide> guides = new ArrayList<>();
 
-	public int getPlaceId() {
-		return placeId;
+	public int getHotelId() {
+		return hotelId;
 	}
 
-	public void setPlaceId(int placeId) {
-		this.placeId = placeId;
+	public void setHotelId(int hotelId) {
+		this.hotelId = hotelId;
 	}
 
 	public String getName() {
@@ -75,12 +65,12 @@ public class FamousPlace {
 		this.location = location;
 	}
 
-	public String getHistory() {
-		return history;
+	public String getIsAvailable() {
+		return isAvailable;
 	}
 
-	public void setHistory(String history) {
-		this.history = history;
+	public void setIsAvailable(String isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 
 	public City getCity() {
@@ -91,26 +81,27 @@ public class FamousPlace {
 		this.city = city;
 	}
 
-	public FamousPlace(int placeId, String name, String image, String location, String history, City city) {
+	public Hotel(int hotelId, String name, String image, String location, String isAvailable, City city) {
 		super();
-		this.placeId = placeId;
+		this.hotelId = hotelId;
 		this.name = name;
 		this.image = image;
 		this.location = location;
-		this.history = history;
+		this.isAvailable = isAvailable;
 		this.city = city;
 	}
 
-	public FamousPlace() {
+	public Hotel() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "FamousPlace [placeId=" + placeId + ", name=" + name + ", image=" + image + ", location=" + location
-				+ ", history=" + history + ", city=" + city + "]";
+		return "Hotel [hotelId=" + hotelId + ", name=" + name + ", image=" + image + ", location=" + location
+				+ ", isAvailable=" + isAvailable + ", city=" + city + "]";
 	}
-	 
+	
 	
 	
 

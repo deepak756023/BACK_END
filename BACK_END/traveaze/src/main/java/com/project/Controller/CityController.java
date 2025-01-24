@@ -22,8 +22,13 @@ public class CityController {
 		List<City> cities = cityService.getAllCities();
 		return cities;
 	}
-	
 	@GetMapping("/city")
+	public City getCityById(@RequestParam String name) {
+		City city = cityService.findCityByName(name);
+		return city;
+	}
+	
+	@GetMapping("/city-id")
 	public City getCityById(@RequestParam Integer id) {
 		City city = cityService.findCityById(id);
 		return city;

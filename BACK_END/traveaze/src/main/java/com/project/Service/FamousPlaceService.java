@@ -18,6 +18,10 @@ public class FamousPlaceService {
 		return this.placeRepository.findAll();
 	}
 	
+	public FamousPlace findPlaceByName(String name) {
+		return this.placeRepository.findByName(name);
+	}
+	
 	public FamousPlace findPlaceById(int id) {
 		return this.placeRepository.findByPlaceId(id);
 	}
