@@ -18,6 +18,10 @@ public class CityService {
 		return  this.cityRepository.findAll();
 	}
 	
+	public City findCityByName(String name) {
+		return this.cityRepository.findByName(name);
+	}
+	
 	public City findCityById(int id) {
 		return this.cityRepository.findByCityId(id);
 	}
