@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "cities")
+@Table(name = "city_mstr")
 
 public class City {
 	@Id
@@ -39,6 +39,10 @@ public class City {
 	
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Hotel> hotels = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Communication> communication = new ArrayList<>();
+
 
 
 	public int getCityId() {
