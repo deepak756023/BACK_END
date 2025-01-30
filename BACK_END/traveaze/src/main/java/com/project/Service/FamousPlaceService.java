@@ -25,5 +25,9 @@ public class FamousPlaceService {
 	public FamousPlace findPlaceById(int id) {
 		return this.placeRepository.findByPlaceId(id);
 	}
+	
+	 public List<FamousPlace> findPlacesByCityId(int cityId) {
+	        return placeRepository.findByCity_CityId(cityId);
+	    }
 
 }
