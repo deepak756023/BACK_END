@@ -34,5 +34,10 @@ public class FamousPlaceController {
 			FamousPlace place = placeService.findPlaceById(id);
 			return place;
 		}
+	
+	  @GetMapping("/places_by_city")
+	    public List<FamousPlace> getPlacesByCityId(@RequestParam int cityId) {
+	        return placeService.findPlacesByCityId(cityId);
+	    }
 
 }
