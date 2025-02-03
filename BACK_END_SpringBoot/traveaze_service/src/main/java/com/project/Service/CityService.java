@@ -25,4 +25,9 @@ public class CityService {
 	public City findCityById(int id) {
 		return this.cityRepository.findByCityId(id);
 	}
+	
+	public int countCities() {
+		var count = this.cityRepository.findAll().stream().count();
+		return (int)count;
+	}
 }
