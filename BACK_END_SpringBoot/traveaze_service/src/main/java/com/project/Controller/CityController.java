@@ -4,6 +4,7 @@ import com.project.Service.CityService;
 import com.project.Entity.City;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,12 @@ public class CityController {
 		City city = cityService.findCityById(id);
 		return city;
 	}
+	//@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/count-city")
+	public int countCity() {
+	    int count = cityService.countCities();
+	    return count;
+	}
+	
 
 }
