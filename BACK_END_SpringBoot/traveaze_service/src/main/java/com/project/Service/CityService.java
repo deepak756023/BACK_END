@@ -1,6 +1,7 @@
 package com.project.Service;
 
 import com.project.repo.CityRepository;
+
 import com.project.Entity.City;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class CityService {
 	public int countCities() {
 		var count = this.cityRepository.findAll().stream().count();
 		return (int)count;
+	}
+	
+	public void addCity(City c) {
+		this.cityRepository.save(c);
 	}
 }
