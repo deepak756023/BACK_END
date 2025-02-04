@@ -34,6 +34,9 @@ public class City {
 	@Column(name = "date_added")
     private Timestamp dateAdded;
 	
+	@Column(name = "map")
+	private String map;
+	
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<FamousPlace> places = new ArrayList<>();
 	
@@ -77,13 +80,23 @@ public class City {
 		this.dateAdded = dateAdded;
 	}
 	
+	
 
-	public City(int cityId, String name, String state, Timestamp dateAdded) {
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
+
+	public City(int cityId, String name, String state, Timestamp dateAdded, String map) {
 		super();
 		this.cityId = cityId;
 		this.name = name;
 		this.state = state;
 		this.dateAdded = dateAdded;
+		this.map = map;
 	}
 
 	public City() {
@@ -92,7 +105,7 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [cityId=" + cityId + ", name=" + name + ", state=" + state + ", dateAdded=" + dateAdded + "]";
+		return "City [cityId=" + cityId + ", name=" + name + ", state=" + state + ", dateAdded=" + dateAdded + ", map ="+ map +"]";
 	}
 	
 	
