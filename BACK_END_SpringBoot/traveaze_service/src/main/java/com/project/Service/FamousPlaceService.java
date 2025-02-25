@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FamousPlaceService {
@@ -37,5 +38,16 @@ public class FamousPlaceService {
 	public void deletePlace(String name) {
 		this.placeRepository.deletePlaceByName(name);
 	}
+	
+	public Optional<FamousPlace> updatePlace(Integer placeId, FamousPlace updatedPlace) {
+        return placeRepository.findById(placeId).map(existingPlace -> {
+            existingPlace.setName(updatedPlace.getName());
+            existingPlace.setImage(updatedPlace.getImage());
+            existingPlace.setLocation(updatedPlace.getLocation());
+            existingPlace.setHistory(updatedPlace.getHistory());
+            existingPlace.setCity(updatedPlace.getCity());
+            return placeRepository.save(existingPlace);
+        });
+    }
 
 }
